@@ -19,7 +19,9 @@ function Pill({ active, children, onClick, testid }) {
 export default function Header({ role, setRole, notifications, onMarkRead }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
-  const unread = notifications.filter((n) => !n.read).length;
+  const unread = Array.isArray(notifications)
+  ? notifications.filter((n) => !n.read).length
+  : 0;
 
   useEffect(() => {
     const close = (e) => {
